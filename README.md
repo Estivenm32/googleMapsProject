@@ -20,7 +20,7 @@ MySQL como base de datos.
 # Pasos para ejecutar el proyecto 
 
 >Descargar el proyecto "GoogleMapsProject"
->En la raiz del proyecto se encuenta una carpeta llamada "DB" donde se encuenta la base de datos, la base de datos debe ser ejecutada de forma local en el gestor:
+>Dentro del proyecto se encuenta una carpeta llamada "backend" y dentro se encuentra otra carpeta llamada "DB" donde se encuenta la base de datos, la base de datos debe ser ejecutada de forma local en el gestor:
 
 	Despues de importar la base de datos en MySQL Workbench, aplicar las siguientes consultas en un Query para visualizar los datos:
 	
