@@ -1,27 +1,49 @@
-# GoogleMapsProject
+                                                       Proyecto Google Maps
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
 
-## Development server
+# Descripción 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este proyecto utiliza un  mapa interactivo que nos ofrece el API de Google Maps, para realizar busquedas simulando "Google Maps", cuenta con dos campos
+para colocar el Origen, Destino y un boton para calcular la ruta en Google Maps, adicional a esto hay una barra lateral donde esta el historial de las ultimas 
+5 busquedas recientes.
 
-## Code scaffolding
+Este Proyecto se realizó con el fin de cumplir el siguiente requerimiento: Evaluar  habilidades como desarrollador fullstack, 
+trabajando con Angular para el frontend y Node.js con Express para el backend, integrando el API de Google Maps, y utilizando 
+MySQL como base de datos.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Requisitos previos
 
-## Build
+>Tener instalada una versión de Node js en mi caso tengo la versión (22.11.0)
+>Tener instalada una versión de Angular en mi caso tengo la versión (16.2.16)
+>Tener instalada una versión de MySQL Workbench en mi caso la versión (8.0 CE)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Pasos para ejecutar el proyecto 
 
-## Running unit tests
+>Descargar el proyecto "GoogleMapsProject"
+>En la raiz del proyecto se encuenta una carpeta llamada "DB" donde se encuenta la base de datos, la base de datos debe ser ejecutada de forma local en el gestor:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+	Despues de importar la base de datos en MySQL Workbench, aplicar las siguientes consultas en un Query para visualizar los datos:
+	
+	USE google_maps_db;
+	SHOW TABLES;
+	DESCRIBE routes;
+	SELECT * FROM routes;
+	
+>Abrir el proyecto "GoogleMapsProject" en un editor de código, puede utilizar Visual Studio Code 
+>En la carpeta backend abrir el archivo server.js y verificar que la conexión de la base de datos MySQL sean las mismas que las credenciales configuradas en tu MySQL:
 
-## Running end-to-end tests
+	user: 'root', 
+	password: 'tu_contraseña',
+  
+>En la terminal del Visual Studio Code o en CMD ubicarse en la carpeta  "backend" Y ejecutar el comando "node server.js" y debe mostrar:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+	Servidor corriendo en http://localhost:3000
+	Conectado a la base de datos MySQL
+	
+>En una nueva terminal de Visual Studio Code o en CMD ubicarse en la carpeta raiz de "GoogleMapsProject"  Y ejecutar el comando "ng serve" el proyecto se debe ver en
+http://localhost:4200/
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Créditos
+
+Estiven Mampira

@@ -1,0 +1,117 @@
+<!-- Archivo: src/app/map-route/map-route.component.html -->
+<div class="min-h-screen relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1563303652-cfe13f3039d7?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+    <!-- Capa gris opaca -->
+    <div class="absolute inset-0 bg-gray-900 opacity-80"></div> 
+  
+    <div class="max-w-4xl mx-auto p-4 space-y-6 relative z-10">
+      <br>
+      <br>
+      <h1 class="text-3xl font-bold text-center text-white">{{ 'title' | translate }}</h1>
+  
+      <div class="space-y-4">
+        <div class="flex flex-col">
+          <label for="origin" class="text-lg font-semibold text-gray-300">{{ 'originLabel' | translate }}</label>
+          <input
+            type="text"
+            [(ngModel)]="origin"
+            id="originInput"
+            [placeholder]="'originPlaceholder' | translate"
+            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+  
+        <div class="flex flex-col">
+          <label for="destination" class="text-lg font-semibold text-gray-300">{{ 'destinationLabel' | translate }}</label>
+          <input
+            type="text"
+            [(ngModel)]="destination"
+            id="destinationInput"
+            [placeholder]="'destinationPlaceholder' | translate"
+            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+  
+        <button
+          (click)="calculateRoute()"
+          class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+        {{ 'btnCalculateRoute' | translate }}
+        </button>
+      </div>
+  
+      <!-- Popups Informativos --> 
+      <div *ngIf="showPopup" class="popup-background" (click)="closePopup()">
+        <div class="popup-content" (click)="$event.stopPropagation()">
+          <p class="text-white">{{ errorMessage }}</p>
+          <button (click)="closePopup()" class="btn-close">Cerrar</button>
+        </div>
+      </div>
+  
+      <div class="map-container mt-8">
+        <google-map
+          [center]="center"
+          [zoom]="zoom"
+          [height]="'400px'"
+          [width]="'100%'"
+        >
+          <map-directions-renderer *ngIf="directions" [directions]="directions"></map-directions-renderer>
+        </google-map>
+      </div>
+  
+      <div class="mt-6">
+        <!-- Btn idioma -->
+        <app-switch-lenguajes></app-switch-lenguajes>
+      </div>
+    </div>
+    
+     <!-- Overlay (cubre toda la pantalla cuando el side bar se ha selecionado) -->
+    <div
+    *ngIf="sidebarOpen"
+    class="fixed inset-0 bg-black bg-opacity-50 z-20"
+    (click)="closeSidebar()"
+    ></div>
+
+    <!-- Sidebar del historias de busqueda-->
+      <div
+        class="sidebar fixed top-0 left-0 h-full w-64 bg-gray-800 text-white shadow-lg z-30 transform transition-transform duration-300 ease-in-out"
+        [class.-translate-x-full]="!sidebarOpen"
+        [class.translate-x-0]="sidebarOpen"
+        style="overflow-y: scroll;"
+      >
+  
+        <div class="p-4">
+          <h2 class="text-xl font-semibold mb-4 text-center">{{ 'recentRoutes' | translate }}</h2>
+          <div *ngIf="recentRoutes.length > 0; else noRoutes" class="space-y-4">
+            <div
+              *ngFor="let route of recentRoutes"
+              class="bg-gray-700 rounded-lg p-4 shadow hover:bg-gray-600 transition-colors cursor-pointer"
+              (click)="selectRoute(route)"
+            >
+              <p><strong>{{ 'originLabel' | translate }}</strong> {{ route.origin_address }}</p>
+              <p><strong>{{ 'destinationLabel' | translate }}</strong> {{ route.destination_address }}</p>
+              <p><strong>{{ 'date' | translate }}</strong> {{ route.request_datetime | date:'short' }}</p>
+            </div>
+          </div>
+          
+          <ng-template #noRoutes>
+            <p class="text-gray-400">{{ 'noRoutesAvailable' | translate }}</p>
+          </ng-template>
+        </div>
+      </div>
+
+
+    <!-- Botón para abrir el Sidebar -->
+    <button
+    *ngIf="!sidebarOpen"
+    class="fixed top-4 left-4 bg-blue-500 text-white p-2 rounded-full shadow-md z-40 focus:outline-none"
+    (click)="toggleSidebar()"
+    >
+    ☰
+    </button>
+
+    <!-- Footer -->     
+    <footer class="bg-[rgb(59_130_246)] bg-opacity-100 text-white py-4 text-center mt-6 absolute bottom-0 left-0 w-full z-20">
+      <p>{{ 'copyright' | translate }}</p>
+    </footer>
+</div>
+
