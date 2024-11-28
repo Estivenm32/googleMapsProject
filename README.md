@@ -13,7 +13,8 @@ MySQL como base de datos.
 
 # Requisitos previos
 
->Tener instalada una versión de Node js en mi caso tengo la versión (22.11.0)
+>Tener instalada una versión de Node js en mi caso tengo la versión (22.11.0), pero es recomendable tener una verión mejor compatible con angular 16.0.0 que en este caso seria
+node.js versión 16.14.0 o >=18.10.0
 >Tener instalada una versión de Angular en mi caso tengo la versión (16.2.16)
 >Tener instalada una versión de MySQL Workbench en mi caso la versión (8.0 CE)
 
